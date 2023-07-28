@@ -10,7 +10,7 @@ cd 到 myfirstvue 目录
 
 ```
 npm run build
-``
+```
 
 将生成的产物 dist 的所有文件 copy 到仓库根目录
 
