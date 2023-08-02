@@ -1,7 +1,10 @@
 <template>
     <div class="my-navigation-bar" :style="{backgroundColor:backgroud, color:color}">
-        {{title}}
-        <button class="item-more" v-on:click="onclicked">More</button>
+        <div id="left-box">
+            <div id="item-back" @click="onBack" v-show="$route.meta.hideTabBar"></div>
+        </div>
+        <p id="title">{{title}}</p>
+        <p class="item-more" v-on:click="onclicked">More</p>
     </div>
 </template>
 
@@ -23,6 +26,9 @@ export default {
     methods: {
         onclicked() {
             this.$emit('showup', this.$parent.title)
+        },
+        onBack() {
+            this.$router.back()
         }
     }
 }
@@ -30,20 +36,43 @@ export default {
 
 <style scoped>
 .my-navigation-bar {
-    height: 45px;
-    line-height: 45px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    height: 44px;
     background-color: #1d7bff;
-    color: #fff;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    padding-top: env(safe-area-inset-top, 0px) ;
+    padding-top: env(safe-area-inset-top, 0px);
     z-index: 2;
 }
 
-.my-navigation-bar .item-more {
-    margin-right: 0;
+#left-box {
+    align-self: center;
+    width: 50px;
+    height: 32px;
+    margin-left: 20px;
+}
+
+#item-back {
+    width: 44px;
+    height: 32px;
+    background-image: url('@/assets/images/icon-nav-back.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#title {
+    align-self: center;
+    padding: 0px;
+}
+
+.item-more {
+    align-self: center;
+    width: 50px;
+    margin-right: 20px;
+    padding: 0px;
 }
 </style>

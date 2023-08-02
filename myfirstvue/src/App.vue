@@ -2,7 +2,7 @@
   
   <div id="app">
     <router-view></router-view>
-    <my-tab-bar>
+    <my-tab-bar v-show="!$route.meta.hideTabBar">
       <my-tab-bar-item v-for="(tab, index) in tabBarList" :key="index" :path="tab.path">
         <img slot="item-icon" :src="tab.image_n" alt=""/>
         <img slot="item-icon-active" :src="tab.image_s" alt=""/>

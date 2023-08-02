@@ -145,7 +145,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .my-navigation-bar {
     height: 45px;
     line-height: 45px;

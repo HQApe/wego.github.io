@@ -1,6 +1,6 @@
 <template>
-    <div class="gods-detail">
-        <!-- <my-navigation-bar :title="title" color="#f00" backgroud="#00f"></my-navigation-bar> -->
+    <div class="goods-detail">
+        <my-navigation-bar :title="title" color="#f00" backgroud="#00f"></my-navigation-bar>
         <p class="my-params">{{$route.params.goodsId}}</p>
         <div>
             <span class="section section-title stiky-box">FlexBox学习（上）</span>
@@ -101,25 +101,33 @@
 </template>
 
 <script>
-// import MyNavigationBar from '../../components/navbar/MyNavigationBar'
+import MyNavigationBar from '@/components/navbar/MyNavigationBar'
 
 export default {
     name:'godsDetail',
-    components:{},
+    components:{MyNavigationBar},
     data () {
         return {
             title: "详情"
+        }
+    },
+    methods: {
+        onBack() {
+            this.$router.back()
         }
     }
 }
 </script>
 
 <style scoped>
-
-.gods-detail {
-    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 49px);
+.goods-detail {
+    margin-top: 44px;
 }
-
+.back {
+    background-color: #258BD6;
+    color: #eeeeee;
+    margin: 20px;
+}
 .my-params {
     /* margin-top: 50px; */
     margin-left: 10px;
@@ -174,21 +182,25 @@ export default {
     */
     background-color: white;
     position: sticky;
-    top: 0px;
+    top: calc(env(safe-area-inset-top, 0px) + 44px);
     left: 0px;
-    z-index: 2;
+    z-index: 1;
 }
 
 
 .section-flex {
     display: flex;
     background-color: #eeeeee;
-    width: 600px;
+    width: 550px;
     height: 200px;
+    overflow-x: scroll;
+    white-space: nowrap;
 }
+
 
 .section-flex div {
     height: 40px;
+    width: 200px;
     color: white;
     font-size: 16px;
     font-weight: bold;

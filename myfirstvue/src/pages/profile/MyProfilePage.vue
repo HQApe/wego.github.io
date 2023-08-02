@@ -6,13 +6,20 @@
             <p>前端小课是通过图片、文字、代码、视频等多种方式写成的一本多媒体电子书。全书分为不同的小书，每本小书旨在讲透一个知识点，比如 CSS布局、HTML、动画。以最基础的编程知识为起点，即使不懂编程的小白也能够通过本书学会编程，顺利进入互联网行业。
 本书最大的特色是通过公众号+图书+网站形成一个闭环。读者可通过公众号实时获得最新的前端知识，并与作者实时互动；通过图书可以系统地学习前端知识；通过网站可看到代码实时运行结果，真正的所见即所得。</p>
         </div>
-        <button @click="showShadow">显示遮罩</button>
-        <div>
+        <button id="button-show" @click="showShadow">显示遮罩</button>
+        <div class="section-study">
             <!-- router-link标签属性 -->
-            <router-link :to="'/me/study/'">我的学习</router-link>
-            <router-link :to="'/me/vuex/'">Vuex入门</router-link>
-            <router-view></router-view>
+            <p>
+                <router-link :to="'/me/study/'">我的学习</router-link>
+            </p>
+            <p>
+                <router-link :to="'/me/vuex/'">Vuex入门</router-link>
+            </p>
+            <p>
+                <router-link :to="'/animation'">CSS动画</router-link>
+            </p>
         </div>
+        <router-view></router-view>
         <div class="slider" v-on:click="onClicked" v-if="hiddenShadow">
             <div id="side-nav" v-on:click.stop="doNothing"></div>
         </div>
@@ -20,7 +27,7 @@
 </template>
 
 <script>
-import MyNavigationBar from '../../components/navbar/MyNavigationBar'
+import MyNavigationBar from '@/components/navbar/MyNavigationBar'
 
 export default {
     name:'ProfilePage',
@@ -39,6 +46,7 @@ export default {
             this.hiddenShadow = false
             console.log('点击了遮罩')
             // let slide = document.getElementById("side-nav")
+            // slide.style.animationName='slideout'
         },
         doNothing(){
             
@@ -57,6 +65,12 @@ export default {
     padding-top: 10px;
 }
 
+.section-study {
+    display: flex;
+    gap: 20px;
+}
+
+
 .slider {
     position: fixed;
     top: 0px;
@@ -73,6 +87,20 @@ export default {
     animation-duration: 0.25s;
     animation-name: slidein;
     animation-iteration-count: 1;
+}
+
+.section-info:hover {
+    color: red;
+}
+
+.section-study>p {
+    transition-timing-function: ease-in-out;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+}
+
+.section-study>p:hover {
+    background-color: red;
 }
 
 @keyframes slidein {
