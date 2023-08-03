@@ -18,6 +18,16 @@
                 </div>
             </div>
         </div>
+        <el-dialog custom-class="my-dialog" width="300" top="15vh" center="true" :visible='myDialog.visible' @close="onCancel" @closed="onDialogClose">
+            <span slot="title" class="my-dialog-title">
+                温馨提示
+            </span>
+            <p class="my-dialog-msg">{{myDialog.msg}}</p>
+            <span slot="footer" class="my-dialog-button">
+                <el-button type="primary" @click="onConfirm">确定</el-button>
+                <el-button type="danger" @click="onCancel">取消</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -30,14 +40,32 @@ export default {
     data () {
         return {
             title: "分类",
-            items:[{id:1},{id:2}]
+            items:[{id:1},{id:2}],
+            showDialog:false,
+            myDialog:{
+                visible:false,
+                msg:""
+            }
         }
     },
     methods: {
+        onConfirm() {
+            this.myDialog.visible = false
+        },
+        onCancel() {
+            this.myDialog.visible = false
+        },
+        onDialogClose() {
+            alert("对话框已关闭")
+        },
         onItemClicked (n) {
-            alert("You are clicked"+ n)
+            this.myDialog.visible = true
+            this.myDialog.msg="恭喜您，点击了" + n
+            if (n);
+            // alert("You are clicked"+ n)
         },
         clickedDown(event){
+            if (event);
             alert("You are clicked"+ event)
             // 调用cordova插件
             // MNfc.startScan({
@@ -60,7 +88,25 @@ export default {
 </script>
 
 
+<style>
+.my-dialog {
+    border-radius: 20px;
+    width: 300px;
+    background-color: antiquewhite;
+}
+</style>
+
 <style scoped>
+.my-dialog-msg {
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+.my-dialog-button {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
 .page-categories {
     padding-top: 44px;
     padding-bottom: 45px;
