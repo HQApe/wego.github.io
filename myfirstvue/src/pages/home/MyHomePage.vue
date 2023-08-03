@@ -2,7 +2,7 @@
     <div class="page-home">
       <div id="nav">
         <div id="nav-left">
-          <div id="nav-more"></div>
+          <div id="nav-more" @click="onShowSlider"></div>
           <p>前端小课</p>
         </div>
         <div id="navi-right">
@@ -35,6 +35,14 @@
         <div class="section tools"></div>
       </div>
       <div id="bottom"></div>
+
+      <el-drawer title="我是标题"
+      :visible.sync="showSlider"
+      direction="ltr"
+      withHeader=false
+      :before-close="handleClose">
+        <span>我来啦!</span>
+      </el-drawer>
     </div>
 </template>
 
@@ -46,14 +54,21 @@ export default {
     name:'HomePage',
     data () {
         return {
-            title: "首页"
+            title: "首页",
+            showSlider:false
         }
     },
     methods:{
+      onShowSlider() {
+        this.showSlider = true
+      },
+      handleClose(done) {
+        done()
+      }
     },
-  computed: {
-          
-  }
+    computed: {
+            
+    }
 }
 </script>
 

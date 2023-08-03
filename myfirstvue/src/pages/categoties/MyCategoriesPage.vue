@@ -1,87 +1,82 @@
 <template>
     <div class="page-categories">
         <my-navigation-bar :title="title" color="#f00" backgroud="#00f" @showup="clickedDown"></my-navigation-bar>
-        <div class="zhq-strategy">
-            <div class="zhq-title">
-                信用卡攻略
+        <div class="nav-span"></div>
+        <div class="page-container">
+            <div class="page-left">
+                <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <i class="el-icon-location"></i>
+                            <span slot="title">导航一</span>
+                        </template>
+                        <el-menu-item-group>
+                            <span slot="title">分组一</span>
+                            <el-menu-item index="1-1">选项1</el-menu-item>
+                            <el-menu-item index="1-2">选项2</el-menu-item>
+                        </el-menu-item-group>
+                        <el-menu-item-group title="分组2">
+                            <el-menu-item index="1-3">选项3</el-menu-item>
+                        </el-menu-item-group>
+                        <el-submenu index="1-4">
+                            <span slot="title">选项4</span>
+                            <el-menu-item index="1-4-1">选项1</el-menu-item>
+                        </el-submenu>
+                    </el-submenu>
+                    <el-menu-item index="2">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">导航二</span>
+                    </el-menu-item>
+                    <el-menu-item index="3" disabled>
+                        <i class="el-icon-document"></i>
+                        <span slot="title">导航三</span>
+                    </el-menu-item>
+                    <el-menu-item index="4">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">导航四</span>
+                    </el-menu-item>
+                </el-menu>
             </div>
-            <div>查看更多》</div>
-        </div>
-        <div class="zhq-list">
-            <div class="zhq-item" v-for="n in 20" v-bind:key="n" v-on:click="onItemClicked(n)">
-                <div class="left-icon-box">
-                    <img src="https://avatars.githubusercontent.com/u/18701895?v=4" alt="">
-                </div>
-                <div class="right-box">
-                    <div class="name">那些条件决定了贷款买房贷款额度呢?那些条件决定了贷款买房贷款额度呢那些条件决定了贷款买房贷款额度呢那些条件决定了贷款买房贷款额度呢那些条件决定了贷款买房贷款额度呢?那些条件决定了贷款买房贷款额度呢?</div>
-                    <div class="time">爱吃fei鱼 01-30</div>
-                </div>
+            <div class="page-right">
+                <el-breadcrumb separator-class="el-icon-arrow-right" class="el-breadcrub-demo">
+                    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                </el-breadcrumb>
+                <el-tabs class="el-tabs-demo" v-model="activeName" @tab-click="handleClick">
+                    <el-tab-pane label="用户管理" name="first">
+                        <HelloWorld></HelloWorld>
+                    </el-tab-pane>
+                    <el-tab-pane label="配置管理" name="second">
+                        <MyListView></MyListView>
+                    </el-tab-pane>
+                    <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+                    <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+                </el-tabs>
             </div>
         </div>
-        <el-dialog custom-class="my-dialog" width="300" top="15vh" center="true" :visible='myDialog.visible' @close="onCancel" @closed="onDialogClose">
-            <span slot="title" class="my-dialog-title">
-                温馨提示
-            </span>
-            <p class="my-dialog-msg">{{myDialog.msg}}</p>
-            <span slot="footer" class="my-dialog-button">
-                <el-button type="primary" @click="onConfirm">确定</el-button>
-                <el-button type="danger" @click="onCancel">取消</el-button>
-            </span>
-        </el-dialog>
     </div>
 </template>
 
 <script>
 import MyNavigationBar from '../../components/navbar/MyNavigationBar'
-
+import HelloWorld from '@/components/HelloWorld'
+import MyListView from '@/components/studyComponents/MyListView'
 export default {
     name:'CategoriesPage',
-    components:{MyNavigationBar},
+    components:{MyNavigationBar, HelloWorld, MyListView},
     data () {
         return {
             title: "分类",
-            items:[{id:1},{id:2}],
-            showDialog:false,
-            myDialog:{
-                visible:false,
-                msg:""
-            }
+            activeName:'first',
+            isCollapse:false,
         }
     },
     methods: {
-        onConfirm() {
-            this.myDialog.visible = false
-        },
-        onCancel() {
-            this.myDialog.visible = false
-        },
-        onDialogClose() {
-            alert("对话框已关闭")
-        },
-        onItemClicked (n) {
-            this.myDialog.visible = true
-            this.myDialog.msg="恭喜您，点击了" + n
-            if (n);
-            // alert("You are clicked"+ n)
-        },
         clickedDown(event){
             if (event);
             alert("You are clicked"+ event)
-            // 调用cordova插件
-            // MNfc.startScan({
-            //     "onStart":function() {
-            //         console.log('onStart');
-            //     },
-            //     "onScan":function(data){
-            //         console.log(data);
-            //     },
-            //     "onClose":function() {
-            //         console.log('onClose');
-            //     },
-            //     "onError":function(err) {
-            //         console.log("errCode:" + err.errCode + "errMsg:" + err.errMsg);
-            //     }
-            // });
         }
     }
 }
@@ -97,88 +92,33 @@ export default {
 </style>
 
 <style scoped>
-.my-dialog-msg {
-    padding: 0px;
-    margin: 0px;
-    text-align: center;
-}
-.my-dialog-button {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-}
+
 .page-categories {
-    padding-top: 44px;
-    padding-bottom: 45px;
+    /* display: flex;
+    flex-direction: column; */
+    background-color: white;
+    height: 100vh;
 }
-
-.zhq-strategy {
+.page-container {
     display: flex;
-    position: sticky;
-    top: 45px;
-    padding-top: 10px;
-    height: 35px;
+    background-color: white;
+    height: calc(100vh - 44px);
+}
+.nav-span {
+    height: calc(env(safe-area-inset-top, 0px) + 44px);
     width: 100%;
-    background: white;
-    justify-content: space-between;
-    border-bottom: 0.5px solid lightgray;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 100%;
 }
 
-.zhq-list {
-    /* padding-top: 45px; */
+.page-right {
+    padding: 20px 20px 0px 20px;
+    width: 100%;
 }
 
-.zhq-strategy .zhq-title {
-    display: flex;
-    margin-top: 0px;
-    margin-left: 16px;
-    margin-right: 16px;
+.el-breadcrub-demo {
     margin-bottom: 10px;
-}
-
-.zhq-item {
-    display: flex;
-    border-bottom: 0.5px solid lightgray;
-}
-
-.zhq-item .left-icon-box {
-    flex: 50px 50px 100px 100px;
-    background-color: red;
-}
-
-.zhq-item .left-icon-box img {
-    width: 80px;
-    height: 80px;
-    margin-top: 0px;
-    margin-left: 16px;
-}
-
-.zhq-item .right-box {
-    flex: 1;
-}
-
-.zhq-item .right-box .name {
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 20px;
-    font-size: 16px;
-    color: black;
-    height: 40px;
-
-    text-align: left;
-    line-height: 20px;
-    overflow:hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-}
-
-.zhq-item .right-box .time {
-    display: flex;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    font-size: 14px;
 }
 </style>
