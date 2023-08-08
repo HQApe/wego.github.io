@@ -67,6 +67,16 @@ const store = new Vuex.Store({
             }
           }
         }
+      },
+      project: {
+        state: {
+          list:[]
+        },
+        mutations:{
+          updateList(state, list) {
+            state.list = list
+          }
+        }
       }
     },
     state: {

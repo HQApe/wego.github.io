@@ -7,6 +7,8 @@
         <input type="text" v-model.lazy="message"/>
         <input type="text" v-model.trim="password"/>
         <p>输入的内容{{ message + '===' + password }}</p>
+
+        <p>我是一个单例{{ sigtonAge() }}</p>
         <label for="male">
             <input type="radio" id="male" value="男" v-model="sex"/>男
         </label>
@@ -41,7 +43,7 @@
 
 <script>
 import MyNavigationBar from '../../components/navbar/MyNavigationBar'
-
+import sington from '@/utils/MySington'
 var tabA = {
     name:"tab-posts",
     data: function() {
@@ -135,6 +137,9 @@ export default {
             }).catch((err) => {
                 console.error(err);
             });
+        },
+        sigtonAge() {
+            return sington.age ?? 0;
         }
     },
   computed: {

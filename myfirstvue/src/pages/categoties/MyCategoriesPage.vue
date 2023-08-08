@@ -77,6 +77,15 @@ export default {
         clickedDown(event){
             if (event);
             alert("You are clicked"+ event)
+        },
+        handleClose(val) {
+            console.log('===handleClose====***', val)
+        },
+        handleOpen(val) {
+            console.log('===handleOpen====***', val)
+        },
+        handleClick(val) {
+            console.log(`===handleClick====***${this.activeName}======`, val)
         }
     }
 }
