@@ -18,6 +18,9 @@
             <p>
                 <router-link :to="'/animation'">CSS动画</router-link>
             </p>
+            <p>
+                <router-link :to="'/storage'">持久化</router-link>
+            </p>
         </div>
         <router-view></router-view>
         <div class="slider" v-on:click="onClicked" v-if="hiddenShadow">

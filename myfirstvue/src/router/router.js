@@ -9,6 +9,7 @@ import MyGodsDetailePage from '../pages/categoties/MyGodsDetailePage'
 import MyStudyPage from '../pages/mystudy/MyStudyPage'
 import MyVuexPage from '../pages/mystudy/MyVuexPage'
 import MyCSSAnimationPage from '@/pages/mystudy/MyCSSAnimationPage'
+import MyStoragePage from '@/pages/mystudy/MyStoragePage'
 
 Vue.use(VueRouter)
 
@@ -30,7 +31,8 @@ const routes = [
         }
     ]},
     { path: '/detail/:goodsId', name:'详情', component: MyGodsDetailePage, meta:{hideTabBar:true}},
-    {path: '/animation', name:'CSS动画学习', component:MyCSSAnimationPage, meta:{hideTabBar:true}}
+    {path: '/animation', name:'CSS动画学习', component:MyCSSAnimationPage, meta:{hideTabBar:true}},
+    {path: '/storage', name:'持久化', component:MyStoragePage, meta:{hideTabBar:true}}
 ]
 
 const router = new VueRouter({
