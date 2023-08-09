@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 import TYPES from './types'
 
@@ -116,6 +117,22 @@ const store = new Vuex.Store({
     getters:{
 
     },
+    plugins: [
+      createPersistedState({
+        // 默认使用localStorage来持久化数据
+        storage: window.sessionStorage,
+        // key: 'my_store', // 如果只配置一个key，则是把所有state数据持久化
+        // paths: ['count'], // 需要持久化的模块
+        reducer(state) {
+          console.log('====zhq====',state)
+          return {
+            // 只存储state中指定的值，或者需要持久化的模块
+            // info:state.info,
+            count:state.count,
+          }
+        }
+      })
+    ]
 })
 
 export default store
