@@ -1,14 +1,18 @@
 <template>
     <div class="page-vuex">
-        <button @click="increase">增加</button>
-        <button @click="decrease">减少</button>
+        <button @click="increaseCount(5)">增加</button>
+        <button @click="decreaseCounter">减少</button>
         <div>Main div State with Store: <strong>{{ this.$store.state.count.counter }}</strong></div>
-        <button @click="addStudent">添加学生</button>
-        <counter></counter>
+        <button @click="addStudent_">添加学生</button>
+        <myCounter></myCounter>
         <div>
             Getters中的方法访问
             <h2>{{$store.getters.moreAgeStu(25)}}</h2>
         </div>
+        <p>mapState modules.count: {{ count.counter }}</p>
+        <p>mapState info: {{ info.age }}</p>
+        <p>mapGetters modules.count: {{ powerCounter }}</p>
+        <p>mapGetters modules.student: （带参）{{ moreAgeStu(20) }}=========（无参）{{ more20stu }}</p>
         <button @click="loginAction">登录</button>
         <button @click="logout">退出登录</button>
         <button @click="getProjectList">获取项目信息</button>
@@ -31,8 +35,10 @@ import {logIn, logOut} from '@/network/api/account'
 import {getProjectList} from '@/network/api/project'
 import {downloadFile} from '@/network/api/file'
 import myCookie from '@/utils/MyCookies'
-
 import sington from '@/utils/MySington'
+
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
+import TYPES from '@/store/types'
 
 let MyCounter = {
     name:"Counter",
@@ -48,26 +54,37 @@ let MyCounter = {
 
 export default {
     name:'VuexPage',
-    components:{counter:MyCounter},
+    components:{myCounter:MyCounter},
     data () {
         return {
             title: "Vuex入门"
         }
     },
     methods: {
-        increase() {
-            // Actions中的方法触发方式
+        // 可以使用常量替代Mutation事件类型，不容易写错字符串
+        ...mapMutations([TYPES.INCREASE_COUNTER,'decrease','increaseCount', TYPES.ADD_STUDENT]),
+        ...mapActions({increaseAction:'increaseAction', }),
+        increaseCounter() {
             sington.age += 10;
-            this.$store.dispatch('increase', 5)
+            // Actions中的方法触发方式
+            // this.$store.dispatch('increaseAction', 5)
+            // 使用mapActions，可以简化调用
+            this.increaseAction(10)
             
         },
-        decrease() {
+        decreaseCounter() {
             // Mutations中的方法触发方式
-            this.$store.commit('decrease')
+            // this.$store.commit('decrease')
+            // 使用mapMutations，可以简化调用
+            this.decrease()
         },
-        addStudent() {
+        addStudent_() {
             const stu = {id:1105, name:"Helon", age:28}
-            this.$store.commit('addStudent', stu)
+
+            // this.$store.commit('addStudent', stu)
+
+            // 使用mapMutations，可以简化调用
+            this.addStudent(stu)
         },
         clearProject() {
             // 直接改变state中的属性
@@ -104,7 +121,9 @@ export default {
         }
     },
     computed: {
-
+        //用mapState等这种辅助函数的时候，前面的方法名和获取的属性名是一致的
+        ...mapState(['count','info']),
+        ...mapGetters(['powerCounter', 'moreAgeStu', 'more20stu'])
     }
 }
 </script>
