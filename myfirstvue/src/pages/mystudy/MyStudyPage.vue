@@ -24,6 +24,10 @@
             <input type="checkbox" value="羽毛球" v-model="hobbies"/>羽毛球
             <h3>爱好是：{{ hobbies }}</h3>
         </div>
+        <div>
+          <h2>这是一个provider/injects使用案例</h2>
+          <myparent-view></myparent-view>
+        </div>
         <div id="dynamic-component-demo">
             <button
                 v-for="tab in tabs"
@@ -42,8 +46,9 @@
 </template>
 
 <script>
-import MyNavigationBar from '../../components/navbar/MyNavigationBar'
+import MyNavigationBar from '@/components/navbar/MyNavigationBar'
 import sington from '@/utils/MySington'
+import MyparentView from '@/components/provider/MyparentView.vue';
 var tabA = {
     name:"tab-posts",
     data: function() {
@@ -106,7 +111,7 @@ var tabB = {
 
 export default {
     name:'StudyPage',
-    components:{MyNavigationBar, tabA, tabB},
+    components:{MyNavigationBar, tabA, tabB, MyparentView},
     data () {
         return {
             title: "学习",

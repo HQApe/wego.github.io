@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
+import * as Cookies from "js-cookie"
 
 import TYPES from './types'
 
@@ -118,20 +119,45 @@ const store = new Vuex.Store({
 
     },
     plugins: [
+      // 两个createPersistedState，相当于配置了两个插件，所以并不会存在冲突或无法使用的情况
       createPersistedState({
         // 默认使用localStorage来持久化数据
         storage: window.sessionStorage,
-        // key: 'my_store', // 如果只配置一个key，则是把所有state数据持久化
+        // key: 'my_store', // 如果只配置一个key，则是把所有state数据持久化，没有设置key，默认为vuex
         // paths: ['count'], // 需要持久化的模块
+        // 如果path和reducer同时存在则使用reducer, 忽悠paths属性
         reducer(state) {
-          console.log('====zhq====',state)
           return {
             // 只存储state中指定的值，或者需要持久化的模块
             // info:state.info,
             count:state.count,
+            student:state.student
           }
         }
-      })
+      }),
+      createPersistedState({
+        storage: window.localStorage,
+        key: 'my_info',
+        paths:['info'],
+      }),
+      // createPersistedState({
+      //   // 还可以存储到cookie，使用getItem、setItem、removeItem方法来操作数据
+      //   storage: {
+      //     getItem: (key) => Cookies.get(key),
+      //     setItem: (key, value) =>
+      //       Cookies.set(key, value, { expires: 3, secure: true }),
+      //     removeItem: (key) => Cookies.remove(key)
+      //   }
+      // }),
+      // createPersistedState({
+      //   //如果需要使用本地存储但需要保护数据的内容，则可以对其进行加密。
+      //   //secure-ls 通过高级别的加密和数据压缩来保护localStorage数据 https://github.com/softvar/secure-ls
+      //   storage: {
+      //     getItem: (key) => ls.get(key),
+      //     setItem: (key, value) => ls.set(key, value),
+      //     removeItem: (key) => ls.remove(key)
+      //   }
+      // })
     ]
 })
 

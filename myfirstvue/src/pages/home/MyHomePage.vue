@@ -39,7 +39,7 @@
       <el-drawer title="我是标题"
       :visible.sync="showSlider"
       direction="ltr"
-      withHeader="false"
+      :withHeader=false
       :before-close="handleClose">
         <span>我来啦!</span>
       </el-drawer>

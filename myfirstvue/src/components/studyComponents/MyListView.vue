@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <el-dialog custom-class="my-dialog" width="300" top="15vh" center="true" :visible='myDialog.visible' @close="onCancel" @closed="onDialogClose">
+        <el-dialog custom-class="my-dialog" width="300" top="15vh" :center="true" :visible='myDialog.visible' @close="onCancel" @closed="onDialogClose">
             <span slot="title" class="my-dialog-title">
                 温馨提示
             </span>
