@@ -38,7 +38,7 @@ export default {
     methods: {
         onItemClicked() {
             if (this.$route.path !== this.path) {
-                this.$router.push(this.path)
+                this.$router.replace(this.path)
             }
         }
     }

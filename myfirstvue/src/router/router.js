@@ -10,12 +10,14 @@ import MyStudyPage from '../pages/mystudy/MyStudyPage'
 import MyVuexPage from '../pages/mystudy/MyVuexPage'
 import MyCSSAnimationPage from '@/pages/mystudy/MyCSSAnimationPage'
 import MyStoragePage from '@/pages/mystudy/MyStoragePage'
+import MyDrawingPage from '@/pages/mystudy/MyDrawingPage'
 
 Vue.use(VueRouter)
 
 const routes = [
     { path: '/', redirect: '/home'},
-    { path: '/home', name:'首页', component: MyHomePage, meta:{hideTabBar:false}},
+    // 对页面的一些参数，可以用meta传递
+    { path: '/home', name:'home', component: MyHomePage, meta:{hideTabBar:false}},
     { path: '/categories', name:'分类', component: MyCategoriesPage, meta:{hideTabBar:false}},
     { path: '/shop', name:'购物车', component: MyShopPage, meta:{hideTabBar:false}},
     { path: '/me', name:'我的', component: MyProfilePage, meta:{hideTabBar:false}, children:[
@@ -31,8 +33,9 @@ const routes = [
         }
     ]},
     { path: '/detail/:goodsId', name:'详情', component: MyGodsDetailePage, meta:{hideTabBar:true}},
-    {path: '/animation', name:'CSS动画学习', component:MyCSSAnimationPage, meta:{hideTabBar:true}},
-    {path: '/storage', name:'持久化', component:MyStoragePage, meta:{hideTabBar:true}}
+    { path: '/animation', name:'CSS动画学习', component:MyCSSAnimationPage, meta:{hideTabBar:true}},
+    { path: '/storage', name:'持久化', component:MyStoragePage, meta:{hideTabBar:true}},
+    { path: '/drawing', name:'画图', component:MyDrawingPage, meta:{hideTabBar:true}}
 ]
 
 const router = new VueRouter({
@@ -43,6 +46,9 @@ router.beforeEach((to, from, next)=>{
     document.title = to.name
     console.log('++++++', from)
     next()
+    // 拦截后跳转至特定页面
+    // next({ name: 'home' })
+    // next({ path: '/home', query: {} })
 })
 router.afterEach((to, from)=>{
     console.log(to,'------',from)

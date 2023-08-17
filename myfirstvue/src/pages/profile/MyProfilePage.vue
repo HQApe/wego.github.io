@@ -21,11 +21,19 @@
             <p>
                 <router-link :to="'/storage'">持久化</router-link>
             </p>
+            <p>
+                <router-link :to="'/drawing'">画图</router-link>
+            </p>
         </div>
         <router-view></router-view>
-        <div class="slider" v-on:click="onClicked" v-if="hiddenShadow">
-            <div id="side-nav" v-on:click.stop="doNothing"></div>
+
+        <div class="slider-container" v-show="hiddenShadow">
+            <div class="slider" v-on:click="onClicked">
+                <div id="side-nav" v-on:click.stop="doNothing"></div>
+            </div>
         </div>
+
+        
     </div>
 </template>
 
@@ -44,12 +52,19 @@ export default {
     methods: {
         showShadow(){
             this.hiddenShadow = true
+            setTimeout(()=>{
+                const f = document.getElementById("side-nav");
+                f.style.transform = `translateX(${200}px)`;
+            },10);
         },
         onClicked() {
-            this.hiddenShadow = false
             console.log('点击了遮罩')
-            // let slide = document.getElementById("side-nav")
-            // slide.style.animationName='slideout'
+            const f = document.getElementById("side-nav");
+            f.style.transform = `translateX(${-200}px)`;
+
+            setTimeout(()=>{
+                this.hiddenShadow = false
+            },250);
         },
         doNothing(){
             
@@ -73,23 +88,34 @@ export default {
     gap: 20px;
 }
 
+.slider-container {
+    position: fixed;
+    top: 44px;
+    left: 0px;
+    height: 100vh;
+    width: 100%;
+    z-index: 10;
+}
 
 .slider {
-    position: fixed;
+    position: relative;
     top: 0px;
     left: 0px;
     height: 100vh;
     width: 100%;
-    background-color: rgba(1, 0, 0, 0.5);
-    z-index: 10;
+    /* animation-duration: 0.25s;
+    animation-name: slidein;
+    animation-iteration-count: 1; */
+    background-color: rgba(0, 0, 0, 0.25);
 }
 #side-nav {
     height: 100vh;
     width: 200px;
+    top: 0;
+    left: -200px;
     background-color:red;
-    animation-duration: 0.25s;
-    animation-name: slidein;
-    animation-iteration-count: 1;
+    transition: transform 0.25s;
+    position: absolute;
 }
 
 .section-info:hover {
