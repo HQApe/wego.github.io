@@ -2,6 +2,7 @@
 node_modules
 myfirstvue/node_modules
 myfirstvue/dist
+myfirstvue/output
 
 
 # local env files
