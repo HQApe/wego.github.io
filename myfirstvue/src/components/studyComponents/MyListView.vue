@@ -55,8 +55,24 @@ export default {
         onItemClicked (n) {
             this.myDialog.visible = true
             this.myDialog.msg="恭喜您，点击了" + n
-            if (n);
-            // alert("You are clicked"+ n)
+            let nfc = window.MNfc
+            if (nfc) {
+                // 调用cordova插件
+                nfc.startScan({
+                                "onStart":function() {
+                                    console.log('onStart');
+                                },
+                                "onScan":function(data){
+                                    console.log(data);
+                                },
+                                "onClose":function() {
+                                    console.log('onClose');
+                                },
+                                "onError":function(err) {
+                                    console.log("errCode:" + err.errCode + "errMsg:" + err.errMsg);
+                                }
+                            });
+            }
         },
     }
 }
