@@ -1,13 +1,14 @@
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
-import MyHomePage from '../pages/home/MyHomePage'
-import MyCategoriesPage from '../pages/categoties/MyCategoriesPage'
-import MyShopPage from '../pages/shop/MyShopPage'
-import MyProfilePage from '../pages/profile/MyProfilePage'
-import MyGodsDetailePage from '../pages/categoties/MyGodsDetailePage'
-import MyStudyPage from '../pages/mystudy/MyStudyPage'
-import MyVuexPage from '../pages/mystudy/MyVuexPage'
+import YGLandingPage from '@/pages/landing/YGLandingPage'
+import MyHomePage from '@/pages/home/MyHomePage'
+import MyCategoriesPage from '@/pages/categoties/MyCategoriesPage'
+import MyShopPage from '@/pages/shop/MyShopPage'
+import MyProfilePage from '@/pages/profile/MyProfilePage'
+import MyGodsDetailePage from '@/pages/categoties/MyGodsDetailePage'
+import MyStudyPage from '@/pages/mystudy/MyStudyPage'
+import MyVuexPage from '@/pages/mystudy/MyVuexPage'
 import MyCSSAnimationPage from '@/pages/mystudy/MyCSSAnimationPage'
 import MyStoragePage from '@/pages/mystudy/MyStoragePage'
 import MyDrawingPage from '@/pages/mystudy/MyDrawingPage'
@@ -15,7 +16,8 @@ import MyDrawingPage from '@/pages/mystudy/MyDrawingPage'
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/', redirect: '/home'},
+    { path: '/', redirect: '/landing'},
+    { path: '/landing', name:'landing', component:YGLandingPage, meta:{hideTabBar:true}},
     // 对页面的一些参数，可以用meta传递
     { path: '/home', name:'home', component: MyHomePage, meta:{hideTabBar:false}},
     { path: '/categories', name:'分类', component: MyCategoriesPage, meta:{hideTabBar:false}},

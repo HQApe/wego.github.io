@@ -17,6 +17,19 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   // 如果项目变大变复杂了，每个module都可以拆成单独文件
     modules:{
+      user:{
+        state:{
+          isLogin: false
+        },
+        mutations: {
+          [TYPES.SET_USER_LOGIN](state) {
+            state.isLogin = true
+          },
+          [TYPES.SET_USER_LOGOUT](state) {
+            state.isLogin = false
+          }
+        }
+      },
       count:{
         state: {
           // modules的形式在访问时，仅state需要加state.moduleName.property
@@ -138,7 +151,7 @@ const store = new Vuex.Store({
       createPersistedState({
         storage: window.localStorage,
         key: 'my_info',
-        paths:['info'],
+        paths:['info', 'user'],
       }),
       // createPersistedState({
       //   // 还可以存储到cookie，使用getItem、setItem、removeItem方法来操作数据
