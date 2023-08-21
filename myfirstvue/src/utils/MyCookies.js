@@ -5,7 +5,7 @@ const BearerAuthTokenkey = "My_Bearer_Auth_Token_Key"
 
 const myCookie = {
 
-    getBearerAuthToken: function () {
+    getBearerAuthToken() {
 
         let token = localStorage.getItem(BearerAuthTokenkey)
         if (token !== undefined) {
@@ -15,13 +15,16 @@ const myCookie = {
         return cookie.get(BearerAuthTokenkey)
     },
 
-    setBearerAuthToken: function (authToken, expires) {
+    setBearerAuthToken(authToken, expires) {
 
         localStorage.setItem(BearerAuthTokenkey, authToken)
 
         cookie.set(BearerAuthTokenkey, authToken, {
             expires: new Date(expires * 1000)
         })
+    },
+    removeBearerAuthToken() {
+        localStorage.removeItem(BearerAuthTokenkey)
     }
 }
 

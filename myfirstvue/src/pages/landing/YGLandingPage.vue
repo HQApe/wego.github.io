@@ -40,6 +40,8 @@
 
 import TYPES from '@/store/types'
 import { mapMutations } from 'vuex'
+import {logIn, logOut} from '@/network/api/account'
+import myCookie from "@/utils/MyCookies"
 
 export default {
     name:"LandingPage",
@@ -50,7 +52,16 @@ export default {
     },
     methods: {
         ...mapMutations([TYPES.SET_USER_LOGIN]),
-        actionSignIn() {
+        async actionSignIn() {
+            let params = {
+                "username": "zhanghq05",
+                "name": "zhanghq05",
+                "password": "zhq092329@",
+                "code": "",
+                "account_type": 1
+            }
+            const res = await logIn(params)
+            myCookie.setBearerAuthToken(res.access_token, res.expires);
             this.setUserLogin()
             this.$router.replace('/home')
         }

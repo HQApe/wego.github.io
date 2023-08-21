@@ -1,6 +1,8 @@
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
+import myCookie from "@/utils/MyCookies"
+
 import YGLandingPage from '@/pages/landing/YGLandingPage'
 import MyHomePage from '@/pages/home/MyHomePage'
 import MyCategoriesPage from '@/pages/categoties/MyCategoriesPage'
@@ -47,7 +49,14 @@ const router = new VueRouter({
 router.beforeEach((to, from, next)=>{
     document.title = to.name
     console.log('++++++', from)
-    next()
+    // next()
+    if(to.name !== '/landing' && myCookie.getBearerAuthToken()) {
+        next()
+    }else if(to.name !== 'landing' && to.name !== '/'){
+        next({ name: 'landing' })
+    }else {
+        next()
+    }
     // 拦截后跳转至特定页面
     // next({ name: 'home' })
     // next({ path: '/home', query: {} })

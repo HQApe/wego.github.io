@@ -100,11 +100,13 @@ export default {
                 "account_type": 1
             }
             const res = await logIn(params)
-            myCookie.setBearerAuthToken(res.access_token, res.expires);
+            myCookie.setBearerAuthToken(res.access_token, res.expires)
             console.log('登录结果', res.access_token)
         },
         async logout() {
             const data = await logOut({})
+            myCookie.removeBearerAuthToken()
+            document.location.reload()
             console.log('退出登录结果', data)
         },
         async getProjectList() {
