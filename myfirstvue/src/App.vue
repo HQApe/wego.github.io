@@ -50,6 +50,11 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    isLandingPage() {
+      return this.$route.path === '/landing'
+    }
   }
 }
 </script>

@@ -45,7 +45,21 @@ instance.interceptors.response.use(response=> {
         }
     })
 }, err=> {
-    console.log(err)
+    if (!err.response) {
+        return Promise.reject({
+            message: '网络连接失败',
+            code: -1,
+            toString() {
+                return this.message
+            }
+        })
+    } else if (
+        err.response.status === 400 ||
+        err.response.status === 401
+    ) {
+        location.reload()
+    }
+    return Promise.reject(err)
 })
 
 export default instance;
