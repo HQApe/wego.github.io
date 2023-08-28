@@ -1,5 +1,5 @@
 <template>
-    <div class="drawing-page">
+    <div class="yg_drawing_try_page">
         <canvas class="myCanvas">
             <p>Add suitable fallback here.</p>
         </canvas>
@@ -116,8 +116,8 @@ export default {
 
 
 <style scoped>
-.drawing-page {
-    margin: 0;
+.yg_drawing_try_page {
+    margin: 20px;
     overflow: hidden;
 }
 </style>

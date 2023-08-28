@@ -5,17 +5,22 @@ import myCookie from "@/utils/MyCookies"
 
 import YGLandingPage from '@/pages/landing/YGLandingPage'
 import YGHomePage from '@/pages/home/YGHomePage'
+import YGVueTryPage from '@/pages/study/YGVueTryPage'
+import YGVuexTrypage from '@/pages/study/YGVuexTrypage'
+import YGCSSTryPage from '@/pages/study/YGCSSTryPage'
+import YGCSSMomentsPage from '@/pages/study/YGCSSMomentsPage'
+import YGStorageTryPage from '@/pages/study/YGStorageTryPage'
+import YGDrawingTryPage from '@/pages/study/YGDrawingTryPage'
+import YGCordovaTryPage from '@/pages/study/YGCordovaTryPage'
 
-import MyHomePage from '@/pages/home/MyHomePage'
 import MyCategoriesPage from '@/pages/categoties/MyCategoriesPage'
 import MyShopPage from '@/pages/shop/MyShopPage'
 import MyProfilePage from '@/pages/profile/MyProfilePage'
-import MyGodsDetailePage from '@/pages/categoties/MyGodsDetailePage'
+
 import MyStudyPage from '@/pages/mystudy/MyStudyPage'
-import MyVuexPage from '@/pages/mystudy/MyVuexPage'
-import MyCSSAnimationPage from '@/pages/mystudy/MyCSSAnimationPage'
-import MyStoragePage from '@/pages/mystudy/MyStoragePage'
-import MyDrawingPage from '@/pages/mystudy/MyDrawingPage'
+import YGProfessionalSkillPage from '@/pages/home/YGProfessionalSkillPage'
+import YGHobbiesPage from '@/pages/home/YGHobbiesPage'
+import YGExperiencePage from '@/pages/home/YGExperiencePage'
 
 Vue.use(VueRouter)
 
@@ -23,25 +28,81 @@ const routes = [
     { path: '/', redirect: '/landing'},
     { path: '/landing', name:'landing', component:YGLandingPage, meta:{hideTabBar:true}},
     // 对页面的一些参数，可以用meta传递
-    { path: '/home', name:'home', component: YGHomePage, meta:{hideTabBar:false}},
-    { path: '/categories', name:'分类', component: MyCategoriesPage, meta:{hideTabBar:false}},
-    { path: '/shop', name:'购物车', component: MyShopPage, meta:{hideTabBar:false}},
-    { path: '/me', name:'我的', component: MyProfilePage, meta:{hideTabBar:false}, children:[
+    { path: '/home', name:'home', redirect:'/home/study/vue', component: YGHomePage, meta:{hideTabBar:false}, children:[
         {
             path:'study',
-            name:'我的学习',
-            component:MyStudyPage
+            component:MyStudyPage,
+            children:[
+                {
+                    path:'/',
+                    redirect:'vue'
+                    
+                },
+                {
+                    path:'vue',
+                    name:'vue',
+                    component:YGVueTryPage,
+                    
+                },
+                {
+                    path:'vuex',
+                    name:'vuex',
+                    component:YGVuexTrypage,
+                    
+                },
+                {
+                    path:'css',
+                    name:'css',
+                    component:YGCSSTryPage,
+                    
+                },
+                {
+                    path:'css_moments',
+                    name:'css_moments',
+                    component:YGCSSMomentsPage,
+                    
+                },
+                {
+                    path:'store',
+                    name:'store',
+                    component:YGStorageTryPage,
+                    
+                },
+                {
+                    path:'drawing',
+                    name:'drawing',
+                    component:YGDrawingTryPage,  
+                },
+                {
+                    path:'cordova',
+                    name:'cordova',
+                    component:YGCordovaTryPage,  
+                },
+            ]
         },
         {
-            path:'vuex',
-            name:'Vuex学习',
-            component:MyVuexPage
-        }
+            path:'skill',
+            name:'skill',
+            component:YGProfessionalSkillPage,
+            
+        },
+        {
+            path:'hobbies',
+            name:'hobbies',
+            component:YGHobbiesPage,
+            
+        },
+        {
+            path:'experience',
+            name:'experience',
+            component:YGExperiencePage,
+            
+        },
     ]},
-    { path: '/detail/:goodsId', name:'详情', component: MyGodsDetailePage, meta:{hideTabBar:true}},
-    { path: '/animation', name:'CSS动画学习', component:MyCSSAnimationPage, meta:{hideTabBar:true}},
-    { path: '/storage', name:'持久化', component:MyStoragePage, meta:{hideTabBar:true}},
-    { path: '/drawing', name:'画图', component:MyDrawingPage, meta:{hideTabBar:true}}
+    { path: '/categories', name:'分类', component: MyCategoriesPage, meta:{hideTabBar:false}},
+    { path: '/shop', name:'购物车', component: MyShopPage, meta:{hideTabBar:false}},
+    { path: '/me', name:'我的', component: MyProfilePage, meta:{hideTabBar:false}},
+    { path: '/detail/:goodsId', name:'详情', component: YGVueTryPage, meta:{hideTabBar:true}},
 ]
 
 const originalPush = VueRouter.prototype.push
@@ -58,7 +119,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next)=>{
-    document.title = to.name
     let isAuth = myCookie.getBearerAuthToken() && (myCookie.getBearerAuthToken().length > 0)
     if (to.name === 'landing') {
         if (isAuth) {
@@ -78,7 +138,9 @@ router.beforeEach((to, from, next)=>{
     // next({ path: '/home', query: {} })
 })
 router.afterEach((to, from)=>{
-    console.log(to,'------',from)
+    document.title = to.name
+    console.log('to====',to)
+    console.log('from====',from)
 })
 
 export default router

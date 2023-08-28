@@ -1,6 +1,6 @@
 <template>
-    <div class="page-home">
-      <div id="nav">
+    <div class="yg_professional_skill_page">
+      <!-- <div id="nav">
         <div id="nav-left">
           <div id="nav-more" @click="onShowSlider"></div>
           <p>前端小课</p>
@@ -15,7 +15,7 @@
           </div>
           <p>GitHub</p>
         </div>
-      </div>
+      </div> -->
       <div id="content">
         <div class="section header">
           <div id="book-info">
@@ -51,7 +51,7 @@
 
 
 export default {
-    name:'HomePage',
+    name:'yg_professional_skill_page',
     data () {
         return {
             title: "首页",
@@ -74,11 +74,12 @@ export default {
 
 <style scoped>
 
-.page-home {
+.yg_professional_skill_page {
     display: flex;
     background-color: #efefef;
     flex-direction: column;
     align-items: center;
+    overflow: scroll;
   }
 
 /*匹配带有屏幕的设备，只适用于屏幕超过 1200px的设备 */
@@ -137,7 +138,7 @@ export default {
 }
 
 #content {
-  padding-top: 44px;
+  /* padding-top: 44px; */
 }
 
 #bottom {

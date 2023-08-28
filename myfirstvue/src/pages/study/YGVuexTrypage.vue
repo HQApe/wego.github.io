@@ -1,5 +1,5 @@
 <template>
-    <div class="page-vuex">
+    <div class="yg_vuex_try_page">
         <button @click="increaseCount(5)">增加</button>
         <button @click="decreaseCounter">减少</button>
         <div>Main div State with Store: <strong>{{ this.$store.state.count.counter }}</strong></div>
@@ -53,7 +53,7 @@ let MyCounter = {
 }
 
 export default {
-    name:'VuexPage',
+    name:'yg_vuex_try_page',
     components:{myCounter:MyCounter},
     data () {
         return {
@@ -131,7 +131,9 @@ export default {
 </script>
 
 <style scoped>
-.page-vuex {
-    margin-top: 44px;
+
+.yg_vuex_try_page {
+    padding: 20px;
 }
+
 </style>

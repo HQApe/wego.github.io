@@ -1,12 +1,17 @@
 <template>
-    <div class="storage-page">
+    <div class="yg_storage_try_page">
         <p>
             需要保存的值：
         </p>
-        <input type="text" name="" id="" v-model="storeValue">
-        <button @click="onSave">保存</button>
+        <p>
+            <input type="text" name="" id="" v-model="storeValue">
+        </p>
+        
+        <button @click="onLocalSave">保存到LocalStorage</button>
+        <button @click="onSessionSave">保存到SessionStorage</button>
         <button @click="onClear">清除</button>
-        <p>保存到localStorage的值：{{ getStorage() }}</p>
+        <p>保存到localStorage的值：{{ getLocalStorage() }}</p>
+        <p>保存到sessionStorage的值：{{ getSessionStorage() }}</p>
     </div>
 </template>
 
@@ -32,13 +37,20 @@ export default {
         }
     },
     methods: {
-        onSave() {
+        onLocalSave() {
+            if (this.storeValue.length === 0) {
+                alert('保存的值不能为空')
+                return
+            }
+            localStorage.setItem(MY_LOCAL_STORAGE_KEY, this.storeValue)
+            this.storeValue = ''
+        },
+        onSessionSave() {
             if (this.storeValue.length === 0) {
                 alert('保存的值不能为空')
                 return
             }
             sessionStorage.setItem(MY_SESSION_STORAGE_KEY, this.storeValue)
-            localStorage.setItem(MY_LOCAL_STORAGE_KEY, this.storeValue)
             this.storeValue = ''
         },
         onClear() {
@@ -46,8 +58,11 @@ export default {
             sessionStorage.removeItem(MY_SESSION_STORAGE_KEY)
             this.$forceUpdate()
         },
-        getStorage(){
-            return localStorage.getItem(MY_LOCAL_STORAGE_KEY);
+        getLocalStorage(){
+            return localStorage.getItem(MY_LOCAL_STORAGE_KEY)
+        },
+        getSessionStorage() {
+            return sessionStorage.getItem(MY_SESSION_STORAGE_KEY)
         }
     },
     watch: {
@@ -60,5 +75,9 @@ export default {
 </script>
 
 <style scoped>
+
+.yg_storage_try_page {
+    padding: 20px;
+}
 
 </style>

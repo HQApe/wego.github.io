@@ -1,13 +1,10 @@
 <template>
     <div class="yg_home_page">
-        <YGMainHeader></YGMainHeader>
-        <el-menu default-active="2" class="yg_main_header_menu">
-            <el-menu-item index="1">专业技能</el-menu-item>
-            <el-menu-item index="2">兴趣爱好</el-menu-item>
-            <el-menu-item index="3">个人经历</el-menu-item>
-            <el-menu-item index="4">项目成果</el-menu-item>
-            <el-menu-item index="5">个人中心</el-menu-item>
-        </el-menu>
+        <YGMainHeader class="yg_header"></YGMainHeader>
+        <keep-alive include="study">
+            <router-view class="yg_main"></router-view>
+        </keep-alive>
+        
     </div>
 </template>
 
@@ -33,9 +30,11 @@ export default {
     display: flex;
     flex-direction: column;
 }
-.yg_main_header_menu {
-    width: 200px;
-    flex-grow: 1;
-    flex-shrink: 0;
+.yg_header {
+    padding-top: env(safe-area-inset-top, 0px);
+    height: 62px;
+}
+.yg_main {
+    height: calc(100vh - 62px - env(safe-area-inset-top, 0px));
 }
 </style>

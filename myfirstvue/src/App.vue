@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <my-tab-bar v-show="!$route.meta.hideTabBar">
+    <my-tab-bar v-show="$route.meta.hideTabBar">
       <my-tab-bar-item v-for="(tab, index) in tabBarList" :key="index" :path="tab.path">
         <img slot="item-icon" :src="tab.image_n" alt=""/>
         <img slot="item-icon-active" :src="tab.image_s" alt=""/>
@@ -21,7 +21,7 @@ export default {
     return {
       tabBarList:[
         {
-          path: '/home',
+          path: '/home/study/vue',
           title:'首页',
           image_n:require('@/assets/images/icon-tab-home-n.png'),
           image_s:require('@/assets/images/icon-tab-home-s.png'),
@@ -43,7 +43,7 @@ export default {
         },
         {
           path: '/me',
-          title:'首页',
+          title:'我的',
           image_n:require('@/assets/images/icon-tab-profile-n.png'),
           image_s:require('@/assets/images/icon-tab-profile-s.png'),
           activeColor:''

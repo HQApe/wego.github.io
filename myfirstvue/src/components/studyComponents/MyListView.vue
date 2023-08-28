@@ -80,7 +80,8 @@ export default {
 
 <style scoped>
 .my-list-view {
-    
+    display: flex;
+    flex-direction: column;
 }
 .my-dialog-msg {
     padding: 0px;
@@ -96,6 +97,7 @@ export default {
 .zhq-strategy {
     display: flex;
     position: sticky;
+    top: 0px;
     height: 35px;
     width: 100%;
     background: white;
@@ -107,9 +109,6 @@ export default {
     display: flex;
     flex-direction: column;
     white-space: nowrap;
-    overflow-y: scroll;
-    overflow-x:hidden;
-    height: calc(100vh - 300px);
 }
 
 .zhq-strategy .zhq-title {

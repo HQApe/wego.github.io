@@ -1,7 +1,6 @@
 <template>
-    <div class="goods-detail">
-        <my-navigation-bar :title="title" color="#f00" backgroud="#00f"></my-navigation-bar>
-        <p class="my-params">{{$route.params.goodsId}}</p>
+    <div class="yg_css_try_page">
+        <!-- <my-navigation-bar :title="title" color="#f00" backgroud="#00f"></my-navigation-bar> -->
         <div>
             <span class="section section-title stiky-box">FlexBox学习（上）</span>
             <div class="section section-box">
@@ -97,15 +96,27 @@
                 <div class="tree">树</div>
             </div>
         </div>
+        <div>
+            <span class="section section-title stiky-box">CSS 动画试试</span>
+            <div class="view_port">
+                <div class="polling_message">Listening for dispatches</div>
+                <div class="cylon_eye"></div>
+            </div>
+
+            <p>随便点击某处来移动球</p>
+            <div class="ball-move" @click="onBallMoveClick">
+                <div id="my-foo" class="ball"></div>
+            </div>
+            </div>
     </div>
 </template>
 
 <script>
-import MyNavigationBar from '@/components/navbar/MyNavigationBar'
+// import MyNavigationBar from '@/components/navbar/MyNavigationBar'
 
 export default {
     name:'godsDetail',
-    components:{MyNavigationBar},
+    // components:{MyNavigationBar},
     data () {
         return {
             title: "详情"
@@ -114,24 +125,24 @@ export default {
     methods: {
         onBack() {
             this.$router.back()
-        }
+        },
+        onBallMoveClick(ev) {
+            const f = document.getElementById("my-foo");
+            f.style.transform = `translateY(${ev.offsetY - 25}px)`;
+            f.style.transform += `translateX(${ev.offsetX - 25}px)`;
+        },
     }
 }
 </script>
 
 <style scoped>
-.goods-detail {
-    margin-top: 44px;
+.yg_css_try_page {
+    padding: 20px;
 }
 .back {
     background-color: #258BD6;
     color: #eeeeee;
     margin: 20px;
-}
-.my-params {
-    /* margin-top: 50px; */
-    margin-left: 10px;
-    height: 20px;
 }
 
 .section,.section-grid {
@@ -182,7 +193,7 @@ export default {
     */
     background-color: white;
     position: sticky;
-    top: calc(env(safe-area-inset-top, 0px) + 44px);
+    top: 0;
     left: 0px;
     z-index: 1;
 }
@@ -471,4 +482,67 @@ export default {
     /* clear: left; */
 }
 
+.polling_message {
+  color: white;
+  float: left;
+  margin-right: 2%;
+}
+
+.view_port {
+  background-color: black;
+  height: 25px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cylon_eye {
+  background-color: red;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.9) 25%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.9) 75%
+  );
+  color: white;
+  height: 100%;
+  width: 20%;
+
+  -webkit-animation: 4s linear 0s infinite alternate move_eye;
+  animation: 4s linear 0s infinite alternate move_eye;
+}
+
+@-webkit-keyframes move_eye {
+  from {
+    margin-left: -20%;
+  }
+  to {
+    margin-left: 100%;
+  }
+}
+@keyframes move_eye {
+  from {
+    margin-left: -20%;
+  }
+  to {
+    margin-left: 100%;
+  }
+}
+
+.ball-move {
+    margin: 20px;
+    width: 300px;
+    height: 300px;
+    border: 1px solid gray;
+    position: relative;
+}
+.ball {
+  border-radius: 25px;
+  width: 50px;
+  height: 50px;
+  background: #c00;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 1s;
+}
 </style>

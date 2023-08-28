@@ -17,6 +17,16 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   // 如果项目变大变复杂了，每个module都可以拆成单独文件
     modules:{
+      tabStudy:{
+        state: {
+          tabIndex:0,
+        },
+        mutations: {
+          [TYPES.SET_STUDY_TAB_INDEX](state, tabIndex) {
+            state.tabIndex = tabIndex
+          }
+        }
+      },
       user:{
         state:{
           isLogin: false
@@ -144,7 +154,8 @@ const store = new Vuex.Store({
             // 只存储state中指定的值，或者需要持久化的模块
             // info:state.info,
             count:state.count,
-            student:state.student
+            student:state.student,
+            tabStudyIndex:state.tabStudy
           }
         }
       }),

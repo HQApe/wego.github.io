@@ -1,5 +1,5 @@
 <template>
-    <div class="moments">
+    <div class="yg_css_moments_page">
         <div class="header">
             <div id="my-info">
                 <span>天那边</span>
@@ -66,7 +66,8 @@ export default {
 <style scoped>
 
 @media screen and (min-width: 500px) {
-    .moments {
+    .yg_css_moments_page {
+        margin: 20px;
         width: 440px;
     }
 }
