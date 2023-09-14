@@ -29,14 +29,18 @@ const store = new Vuex.Store({
       },
       user:{
         state:{
-          isLogin: false
+          userInfo:{
+            userName:'',
+            showName:'',
+            role:''
+          }
         },
         mutations: {
-          [TYPES.SET_USER_LOGIN](state) {
-            state.isLogin = true
+          [TYPES.CLEAR_USER_INFO](state) {
+            state.userInfo = null
           },
-          [TYPES.SET_USER_LOGOUT](state) {
-            state.isLogin = false
+          [TYPES.SET_USER_INFO](state, userInfo) {
+            state.userInfo = userInfo
           }
         }
       },

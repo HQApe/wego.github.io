@@ -7,24 +7,6 @@
 本书最大的特色是通过公众号+图书+网站形成一个闭环。读者可通过公众号实时获得最新的前端知识，并与作者实时互动；通过图书可以系统地学习前端知识；通过网站可看到代码实时运行结果，真正的所见即所得。</p>
         </div>
         <button id="button-show" @click="showShadow">显示遮罩</button>
-        <div class="section-study">
-            <!-- router-link标签属性 -->
-            <p>
-                <router-link :to="'/me/study/'">我的学习</router-link>
-            </p>
-            <p>
-                <router-link :to="'/me/vuex/'">Vuex入门</router-link>
-            </p>
-            <p>
-                <router-link :to="'/animation'">CSS动画</router-link>
-            </p>
-            <p>
-                <router-link :to="'/storage'">持久化</router-link>
-            </p>
-            <p>
-                <router-link :to="'/drawing'">画图</router-link>
-            </p>
-        </div>
         <router-view></router-view>
 
         <div class="slider-container" v-show="hiddenShadow">
@@ -83,11 +65,6 @@ export default {
     padding-top: 10px;
 }
 
-.section-study {
-    display: flex;
-    gap: 20px;
-}
-
 .slider-container {
     position: fixed;
     top: 44px;
@@ -120,16 +97,6 @@ export default {
 
 .section-info:hover {
     color: red;
-}
-
-.section-study>p {
-    transition-timing-function: ease-in-out;
-    transition-property: background-color;
-    transition-duration: 0.5s;
-}
-
-.section-study>p:hover {
-    background-color: red;
 }
 
 @keyframes slidein {

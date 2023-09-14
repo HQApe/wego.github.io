@@ -107,10 +107,20 @@ const routes = [
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function (location, onComplete, onAbort) {
-    if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
-        return originalPush.call(this, location, onComplete, onAbort).catch(err => { })
+    if (onComplete && onAbort && typeof Promise !== 'undefined') {
+        return originalPush.call(this, location, onComplete, onAbort)
     } else {
-        originalPush.call(this, location, onComplete, onAbort)
+        originalPush.call(this, location).catch(err => { })
+    }
+}
+
+const originalReplace = VueRouter.prototype.replace
+VueRouter.prototype.replace = function (location, onComplete, onAbort) {
+    if (this.path === location) return
+    if (onComplete && onAbort && typeof Promise !== 'undefined') {
+        return originalReplace.call(this, location, onComplete, onAbort).catch(err => { })
+    } else {
+        originalReplace.call(this, location).catch(err => { })
     }
 }
 

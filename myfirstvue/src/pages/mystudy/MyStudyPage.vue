@@ -18,7 +18,7 @@
             <el-menu-item index="/home/study/cordova">Cordova集成</el-menu-item>
         </el-menu>
         <div id="study_content_right">
-          <keep-alive include="/home/study/vue">
+          <keep-alive :include="['yg_vue_try_page','StoragePage']">
             <router-view></router-view>
           </keep-alive>
         </div>

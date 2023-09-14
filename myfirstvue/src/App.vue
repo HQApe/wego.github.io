@@ -1,22 +1,24 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <my-tab-bar v-show="$route.meta.hideTabBar">
+    <keep-alive include="yg_home_page">
+        <router-view></router-view>
+    </keep-alive>
+    <!-- <my-tab-bar v-show="$route.meta.hideTabBar">
       <my-tab-bar-item v-for="(tab, index) in tabBarList" :key="index" :path="tab.path">
         <img slot="item-icon" :src="tab.image_n" alt=""/>
         <img slot="item-icon-active" :src="tab.image_s" alt=""/>
         <div slot="item-text" activeColor="#FF999999">{{ tab.title }}</div>
       </my-tab-bar-item>
-    </my-tab-bar>
+    </my-tab-bar> -->
   </div>
 </template>
 
 <script>
-import MyTabBar from '@/components/tabbar/MyTabBar'
-import MyTabBarItem from '@/components/tabbar/MyTabBarItem'
+// import MyTabBar from '@/components/tabbar/MyTabBar'
+// import MyTabBarItem from '@/components/tabbar/MyTabBarItem'
 export default {
   name: 'app',
-  components: {MyTabBar, MyTabBarItem},
+  // components: {MyTabBar, MyTabBarItem},
   data () {
     return {
       tabBarList:[

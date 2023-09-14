@@ -32,7 +32,7 @@ export default {
         }
     },
     methods: {
-        ...mapMutations([TYPES.SET_USER_LOGIN]),
+        ...mapMutations([TYPES.SET_USER_INFO]),
         onSignChanged() {
             this.isSingIn = !this.isSingIn
         },
@@ -56,7 +56,7 @@ export default {
                 const res = await logIn(params)
                 if (res.access_token) {
                     myCookie.setBearerAuthToken(res.access_token, res.expires);
-                    this.setUserLogin()
+                    this.setUserInfo({userName:res.username, showName:res.show_name, role:res.role})
                     this.$router.replace('/home')
                 }else {
                     this.$message.error(res.toString());

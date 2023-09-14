@@ -1,10 +1,9 @@
 <template>
     <div class="yg_home_page">
         <YGMainHeader class="yg_header"></YGMainHeader>
-        <keep-alive include="study">
+        <keep-alive include="StudyPage">
             <router-view class="yg_main"></router-view>
         </keep-alive>
-        
     </div>
 </template>
 
