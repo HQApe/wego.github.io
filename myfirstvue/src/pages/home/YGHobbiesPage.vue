@@ -1,6 +1,6 @@
 <template>
     <div class="yg_hobbies_page">
-        这是个人兴趣页面
+        <el-empty :image-size="200"></el-empty>
     </div>
 </template>
 

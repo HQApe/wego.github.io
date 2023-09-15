@@ -54,13 +54,15 @@ export default {
   width: 200px;
   text-align: center;
   flex-shrink: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #study_content_right {
   background-color: white;
   width: 100%;
   flex-shrink: 1;
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
 }
 </style>
