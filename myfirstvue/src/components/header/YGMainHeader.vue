@@ -123,7 +123,7 @@ export default {
 .v-modal {
     position: fixed;
     left: 0;
-    top: 60px;
+    top: calc(env(safe-area-inset-top, 0px) + 60px);
     width: 100%;
     height: 100%;
     opacity: .5;
@@ -217,7 +217,7 @@ export default {
 }
 
 .yg_slider_nav {
-    top: 60px;
+    top: calc(env(safe-area-inset-top, 0px) + 60px);
 }
 
 </style>

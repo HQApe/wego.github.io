@@ -57,8 +57,7 @@ export default {
 
 <style scoped>
 .page-profile {
-    margin-top: 44px;
-    margin-left: 10px;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 44px);
 }
 
 .section-info {

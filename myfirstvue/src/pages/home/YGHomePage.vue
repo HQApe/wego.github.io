@@ -34,7 +34,7 @@ export default {
 }
 .yg_header {
     padding-top: env(safe-area-inset-top, 0px);
-    height: 62px;
+    height: 61px;
 }
 .yg_main {
     height: calc(100vh - 62px - env(safe-area-inset-top, 0px));

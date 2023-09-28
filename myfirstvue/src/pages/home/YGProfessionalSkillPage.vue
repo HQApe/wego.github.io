@@ -148,7 +148,6 @@ export default {
   width: 100%;
   background-color: rgba(193, 215, 245, 0.99);
   margin-top: 20px;
-  margin-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .section {
