@@ -95,9 +95,13 @@ export default {
             console.log('退出登录结果', data)
         },
         async getProjectList() {
-            const data = await getProjectList({})
-            this.$store.commit('updateList', data)
-            console.log('项目列表结果', data)
+            try {
+                const data = await getProjectList({})
+                this.$store.commit('updateList', data)
+                console.log('项目列表结果', data)
+            } catch (val) {
+                console.log(val)
+            }
         },
         async downloadFile() {
             const data = await downloadFile("/api/config-hook/download?oss_key=config/3a020990-3cc119be-098b-2c311a146a83/hook/3a02d0ff-ca80f404-6796-99b191a98bf8_add-Keyboard.js&name=add-Keyboard.js")

@@ -136,7 +136,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next)=>{
     let isAuth = myCookie.getBearerAuthToken() && (myCookie.getBearerAuthToken().length > 0)
-    if (to.name === 'landing') {
+    if (to.path === '/landing') {
         if (isAuth) {
             next({ name: 'home' })
         }else {
