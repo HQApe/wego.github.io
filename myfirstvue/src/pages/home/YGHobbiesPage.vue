@@ -7,6 +7,7 @@
 
 <style scoped>
 .yg_hobbies_page {
-    padding: 20px;
+    overflow: auto;
+    overflow-x: hidden;
 }
 </style>

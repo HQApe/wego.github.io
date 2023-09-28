@@ -115,8 +115,25 @@ export default {
             console.log('项目列表结果', data)
         },
         async downloadFile() {
-            const data = await downloadFile("/api/config-hook/download?oss_key=config/3a020990-3cc119be-098b-2c311a146a83/hook/3a02d0ff-ca80f404-6796-99b191a98bf8_add-Keyboard.js&name=add-Keyboard.js")
-            console.log(data);
+            const res = await downloadFile("/api/config-hook/download?oss_key=config/3a020990-3cc119be-098b-2c311a146a83/hook/3a02d0ff-ca80f404-6796-99b191a98bf8_add-Keyboard.js&name=add-Keyboard.js")
+            // const fileNameEncode = res.headers['content-disposition'].split('filename=')[1]
+            // /// 解码
+            // const fileName = decodeURIComponent(fileNameEncode)
+            const fileName = 'add-Keyboard.js'
+            console.log('fileName', fileName)
+            // 设置type类型
+            const blob = new Blob([res.data], {
+                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; application/octet-stream'
+            })
+            const fileUrl = window.URL.createObjectURL(blob)
+            let a = document.createElement("a");
+            a.href = fileUrl
+            console.log('url', fileUrl)
+            a.setAttribute('download', fileName)
+            a.style.display = 'none'
+            a.click()
+            a.remove()
+            console.log(res);
         },
         sigtonAge() {
             return sington.age ?? 0;

@@ -77,6 +77,8 @@ export default {
     background-color: #efefef;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
+    overflow-x: hidden;
   }
 
 /*匹配带有屏幕的设备，只适用于屏幕超过 1200px的设备 */
@@ -146,7 +148,7 @@ export default {
   width: 100%;
   background-color: rgba(193, 215, 245, 0.99);
   margin-top: 20px;
-  margin-bottom: calc(env(safe-area-inset-bottom, 0px) + 49px);
+  margin-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .section {

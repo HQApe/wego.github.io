@@ -53,11 +53,6 @@ instance.interceptors.response.use(response=> {
                 return this.message
             }
         })
-    } else if (
-        err.response.status === 400 ||
-        err.response.status === 401
-    ) {
-        location.reload()
     }
     return Promise.reject(err)
 })
