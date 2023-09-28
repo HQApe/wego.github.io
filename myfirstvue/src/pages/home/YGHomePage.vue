@@ -1,6 +1,6 @@
 <template>
     <div class="yg_home_page">
-        <YGMainHeader class="yg_header"></YGMainHeader>
+        <YGMainHeader class="yg_header" @showNavigationBar="showNavigationBar"></YGMainHeader>
         <keep-alive include="StudyPage">
             <router-view class="yg_main"></router-view>
         </keep-alive>
@@ -16,8 +16,11 @@ export default {
     name: 'yg_home_page',
     data() {
         return {
-
+            showSlider:false
         }
+    },
+    methods: {
+        
     }
 }
 

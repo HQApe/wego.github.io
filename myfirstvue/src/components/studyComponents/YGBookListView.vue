@@ -78,7 +78,7 @@ export default {
 }
 
 .yg_book_list_view {
-    padding: 20px 20px 0px 20px;
+    padding: 20px 20px 20px 20px;
     overflow: hidden;
 }
 
@@ -102,7 +102,10 @@ export default {
 
 .yg_book_card {
     padding: 10px;
+    margin-right: 2px;
     border-radius: 10px;
+    flex-shrink: 0;
+    flex-grow: 0;
     transition:box-shadow .25s ease-in-out;
     display: flex;
     flex-direction: column;

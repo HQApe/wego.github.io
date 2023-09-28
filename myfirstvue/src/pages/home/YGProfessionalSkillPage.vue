@@ -23,7 +23,9 @@
         <div class="section">
           <YGBookListView></YGBookListView>
         </div>
-        <div class="section tools"></div>
+        <div class="section tools">
+          <YGToolsView></YGToolsView>
+        </div>
       </div>
       <div id="bottom">
         <YGPageFooter></YGPageFooter>
@@ -43,10 +45,11 @@
 
 import YGAboutView from '@/components/studyComponents/YGAboutView'
 import YGBookListView from '@/components/studyComponents/YGBookListView'
+import YGToolsView from '@/components/studyComponents/YGToolsView'
 import YGPageFooter from '@/components/footer/YGPageFooter'
 export default {
     name:'yg_professional_skill_page',
-    components:{YGAboutView, YGBookListView, YGPageFooter},
+    components:{YGAboutView, YGBookListView, YGPageFooter, YGToolsView},
     data () {
         return {
             title: "首页",
@@ -141,7 +144,7 @@ export default {
 #bottom {
   height: 200px;
   width: 100%;
-  background-color: antiquewhite;
+  background-color: rgba(53, 130, 238, 0.929);
   margin-top: 20px;
   margin-bottom: calc(env(safe-area-inset-bottom, 0px) + 49px);
 }
@@ -210,12 +213,6 @@ export default {
   position: absolute;
   top: 15px;
   right: -5px;
-}
-
-.tools {
-  height: 300px;
-  background-color: antiquewhite;
-  display: flex;
 }
 
 </style>

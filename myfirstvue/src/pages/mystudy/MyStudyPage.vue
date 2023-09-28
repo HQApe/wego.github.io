@@ -16,6 +16,7 @@
             <el-menu-item index="/home/study/store">本地持久化</el-menu-item>
             <el-menu-item index="/home/study/drawing">Canvas画图</el-menu-item>
             <el-menu-item index="/home/study/cordova">Cordova集成</el-menu-item>
+            <el-menu-item index="/home/study/http">网络请求</el-menu-item>
         </el-menu>
         <div id="study_content_right">
           <keep-alive :include="['yg_vue_try_page','StoragePage']">

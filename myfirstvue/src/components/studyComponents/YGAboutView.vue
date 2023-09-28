@@ -4,7 +4,7 @@
             <div id="book-img"></div>
             <p>《WEGO》</p>
             <p>一个以Vue+Element为前端框架，PHP/SpringBoot为后端框架的学习网站，从零开始学习前端/后端技术，记录入门并进阶前端/后端的学习历程。</p>
-            <p> 张华清 / 出品 </p>
+            <p> 张华清 / 制作 </p>
         </div>
         <div id="book-about">
             <p>关于WEGO</p>

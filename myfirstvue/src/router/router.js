@@ -21,14 +21,21 @@ import MyStudyPage from '@/pages/mystudy/MyStudyPage'
 import YGProfessionalSkillPage from '@/pages/home/YGProfessionalSkillPage'
 import YGHobbiesPage from '@/pages/home/YGHobbiesPage'
 import YGExperiencePage from '@/pages/home/YGExperiencePage'
+import YGHttpTryPage from '@/pages/study/YGHttpTryPage'
 
 Vue.use(VueRouter)
 
 const routes = [
     { path: '/', redirect: '/landing'},
-    { path: '/landing', name:'landing', component:YGLandingPage, meta:{hideTabBar:true}},
+    { path: '/landing', name:'登录', component:YGLandingPage, meta:{hideTabBar:true}},
     // 对页面的一些参数，可以用meta传递
-    { path: '/home', name:'home', redirect:'/home/study/vue', component: YGHomePage, meta:{hideTabBar:false}, children:[
+    { path: '/home', name:'home', redirect:'/home/skill', component: YGHomePage, meta:{hideTabBar:false}, children:[
+        {
+            path:'skill',
+            name:'专业技能',
+            component:YGProfessionalSkillPage,
+            
+        },
         {
             path:'study',
             component:MyStudyPage,
@@ -78,23 +85,22 @@ const routes = [
                     name:'cordova',
                     component:YGCordovaTryPage,  
                 },
+                {
+                    path:'http',
+                    name:'http',
+                    component:YGHttpTryPage,  
+                },
             ]
         },
         {
-            path:'skill',
-            name:'skill',
-            component:YGProfessionalSkillPage,
-            
-        },
-        {
             path:'hobbies',
-            name:'hobbies',
+            name:'兴趣爱好',
             component:YGHobbiesPage,
             
         },
         {
             path:'experience',
-            name:'experience',
+            name:'个人经历',
             component:YGExperiencePage,
             
         },
