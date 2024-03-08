@@ -31,6 +31,11 @@ export default {
                     description: 'Android系统开发必被技能，掌握了这项技能，就可以在所有的Android设备上开发应用。'
                 },
                 {
+                    name: 'HarmonyOS',
+                    image:'https://p0.itc.cn/images01/20231117/1cb10663f7344a91ad111a84f668954a.png',
+                    description: '华为鸿蒙系统开发必被技能，掌握了这项技能，就可以在所有的Harmony设备上开发应用。'
+                },
+                {
                     name: 'Vue',
                     image:'https://pic3.zhimg.com/v2-c052f772c27dea54296342154fd484df_400x224.jpg?source=172ae18b',
                     description: '是一款用于构建用户界面的 JavaScript 框架。它基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型，帮助你高效地开发用户界面。无论是简单还是复杂的界面，Vue 都可以胜任。'
